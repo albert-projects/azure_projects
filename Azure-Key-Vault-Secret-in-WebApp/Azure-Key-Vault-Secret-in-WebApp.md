@@ -7,7 +7,7 @@
 <h3 id="introduction">Introduction</h3>
 <p>We  have  registered  an  on-premises  Web  App  (myapp)  in  Azure  AD,  which  automatically  creates  an  associated  Azure  service  principal  also  named  “myapp.”  This  article  explores  the  configuration  necessary  for  “myapp”  to  access  secrets  stored  within  an  Azure  Key  Vault.</p>
 <h3 id="implementation">Implementation</h3>
-<p>The  configuration  and  coding  approach  can  follow  the  guidelines  outlined  in  the  tutorial  “Tutorial:  Use  a  managed  identity  to  connect  Key  Vault  to  an  Azure  web  app  in  .NET”.  However,  since  the  system  resides  on-premises,  we  need  to  replace  DefaultAzureCredential  with  ClientSecretCredential.</p>
+<p>The  configuration  and  coding  approach  can  follow  the  guidelines  outlined  in  the  tutorial  <a href="https://learn.microsoft.com/en-us/azure/key-vault/general/tutorial-net-create-vault-azure-web-app">“Tutorial:  Use  a  managed  identity  to  connect  Key  Vault  to  an  Azure  web  app  in  .NET”</a>.  However,  since  the  system  resides  on-premises,  we  need  to  replace  DefaultAzureCredential  with  ClientSecretCredential.</p>
 <p>ClientSecretCredential  requires  tenantId,  clientId,  and  clientSecret.  To  obtain  these  values:</p>
 <ol>
 <li>
