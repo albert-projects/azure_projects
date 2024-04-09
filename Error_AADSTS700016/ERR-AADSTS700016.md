@@ -3,7 +3,7 @@
 
 ---
 
-<h2 id="aadsts700016--error--when--acquiring--token--for--azure--bot">AADSTS700016  Error  When  Acquiring  Token  for  Azure  Bot</h2>
+<h2 id="error-aadsts700016--when--acquiring--token--for--azure--bot">Error AADSTS700016  When  Acquiring  Token  for  Azure  Bot</h2>
 <h3 id="problem">Problem</h3>
 <p>When  creating  an  App  in  Microsoft  Entra  ID  (Azure  AD)  “App  registrations”  with  “Supported  account  types”  set  to  “Accounts  in  this  organizational  directory  only  (your  organization  only  -  Single  tenant)”  and  configuring  its  “Certificates  &amp;  secrets,”  followed  by  creating  an  Azure  Bot  and  setting  the  “Microsoft  App  ID”  with  “Type  of  App”  as  “Single  Tenant”  to  correspond  to  the  aforementioned  App,  an  AADSTS700016  error  occurs  when  attempting  to  acquire  a  token  using  the  App’s  clientId  and  secrets  through  the  following  URL:</p>
 <pre><code>https://login.microsoftonline.com/botframework.com/oauth2/v2.0/token
