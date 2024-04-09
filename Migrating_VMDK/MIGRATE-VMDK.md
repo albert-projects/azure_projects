@@ -119,11 +119,11 @@ az account set --subscription "Your Azure Subscription ID"
 az group create --location eastus --name YourResourceGroupName
 az disk create -n YourAzureDiskName -g YourResourceGroupName -l eastus --for-upload --upload-size-bytes VHDFileSize --sku standardssd_lrs --hyper-v-generation V1
 az disk grant-access -n YourAzureDiskName -g YourResourceGroupName --access-level Write --duration-in-seconds 86400
-
-\# Upload VHD using AzCopy
+</code></pre>
+<pre><code>\# Upload VHD using AzCopy
 AzCopy.exe copy "C:\VM\win2012.vhd" "accessSAS_value" --blob-type PageBlob
-
-\# Revoke SAS and create VM 
+</code></pre>
+<pre><code>\# Revoke SAS and create VM 
 az disk revoke-access -n YourAzureDiskName -g YourResourceGroupName 
 az vm create --resource-group YourResourceGroupName --location eastus --name NewVMName --os-type windows --attach-os-disk YourAzureDiskName
 </code></pre>
