@@ -108,22 +108,22 @@ ConvertTo-MvmcVirtualHardDisk -SourceLiteralPath "C:\vm\win2012.vmdk" -Destinati
 <p><img src="https://github.com/albert-projects/azure_projects/blob/master/Migrating_VMDK/vmdk05.png" alt="VMDK5"><br>
 Once  the  VM  creation  is  complete,  you  can  connect  to  it  via  Remote  Desktop  and  remove  VMware  Tools.  It  can  also  adjust  the  VM  size,  configure  automatic  shutdown,  and  other  settings  in  the  Azure  Portal.</p>
 <p><strong>Complete  Script:</strong></p>
-<pre><code>; Convert VMDK to VHD
+<pre><code>\# Convert VMDK to VHD
 Import-Module 'C:\Program Files\Microsoft Virtual Machine Converter\MvmcCmdlet.psd1'
 ConvertTo-MvmcVirtualHardDisk -SourceLiteralPath "C:\vm\win2012.vmdk" -DestinationLiteralPath "C:\vm\win2012.vhd" -VhdType FixedHardDisk -VhdFormat Vhd
 Resize-VHD -Path c:\vm\win2012.vhd -SizeBytes 64GB
 
-; Azure CLI commands
+\# Azure CLI commands
 az login
 az account set --subscription "Your Azure Subscription ID"
 az group create --location eastus --name YourResourceGroupName
 az disk create -n YourAzureDiskName -g YourResourceGroupName -l eastus --for-upload --upload-size-bytes VHDFileSize --sku standardssd_lrs --hyper-v-generation V1
 az disk grant-access -n YourAzureDiskName -g YourResourceGroupName --access-level Write --duration-in-seconds 86400
 
-; Upload VHD using AzCopy
+\# Upload VHD using AzCopy
 AzCopy.exe copy "C:\VM\win2012.vhd" "accessSAS_value" --blob-type PageBlob
 
-; Revoke SAS and create VM 
+\# Revoke SAS and create VM 
 az disk revoke-access -n YourAzureDiskName -g YourResourceGroupName 
 az vm create --resource-group YourResourceGroupName --location eastus --name NewVMName --os-type windows --attach-os-disk YourAzureDiskName
 </code></pre>
