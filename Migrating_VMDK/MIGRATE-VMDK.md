@@ -113,6 +113,7 @@ Import-Module 'C:\Program Files\Microsoft Virtual Machine Converter\MvmcCmdlet.p
 ConvertTo-MvmcVirtualHardDisk -SourceLiteralPath "C:\vm\win2012.vmdk" -DestinationLiteralPath "C:\vm\win2012.vhd" -VhdType FixedHardDisk -VhdFormat Vhd
 Resize-VHD -Path c:\vm\win2012.vhd -SizeBytes 64GB
 
+
 \# Azure CLI commands
 az login
 az account set --subscription "Your Azure Subscription ID"
