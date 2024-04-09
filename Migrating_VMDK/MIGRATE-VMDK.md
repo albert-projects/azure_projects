@@ -33,6 +33,7 @@ Ensure  the system have  downloaded  and  installed  the  following  software:</
 <pre><code>Import-Module 'C:\Program Files\Microsoft Virtual Machine Converter\MvmcCmdlet.psd1'
 ConvertTo-MvmcVirtualHardDisk -SourceLiteralPath "C:\vm\win2012.vmdk" -DestinationLiteralPath "C:\vm\win2012.vhd" -VhdType FixedHardDisk -VhdFormat Vhd
 </code></pre>
+<p><img src="https://github.com/albert-projects/azure_projects/blob/master/Migrating_VMDK/vmdk01.png" alt="VMDK1"></p>
 <ul>
 <li>In  this  example,  I  only  uploading  one  VM,  so  I   haven’t  use  Sysprep.</li>
 </ul>
@@ -77,6 +78,7 @@ ConvertTo-MvmcVirtualHardDisk -SourceLiteralPath "C:\vm\win2012.vmdk" -Destinati
 </ul>
 <pre><code>az disk grant-access -n vmwareDisk -g vwwareVMs --access-level Write --duration-in-seconds 86400
 </code></pre>
+<p><img src="https://github.com/albert-projects/azure_projects/blob/master/Migrating_VMDK/vmdk02.png" alt="VMDK2"></p>
 <ul>
 <li>Note  the  accessSAS  value  from  the  output.</li>
 </ul>
@@ -84,8 +86,10 @@ ConvertTo-MvmcVirtualHardDisk -SourceLiteralPath "C:\vm\win2012.vmdk" -Destinati
 <ul>
 <li>Use  the  AzCopy  tool  to  upload  the  VHD  to  the  Azure  Disk  using  the  SAS  URL:</li>
 </ul>
+<p><img src="https://github.com/albert-projects/azure_projects/blob/master/Migrating_VMDK/vmdk03.png" alt="VMDK3"></p>
 <pre><code>AzCopy.exe copy "C:\VM\win2012.vhd" "your_accessSAS_value" --blob-type PageBlob
 </code></pre>
+<p><img src="https://github.com/albert-projects/azure_projects/blob/master/Migrating_VMDK/vmdk04.png" alt="VMDK"></p>
 <ul>
 <li>This  process  may  take  some  time  depending  on  the  size  of  the  VHD  and  your  internet  speed.</li>
 </ul>
@@ -101,7 +105,8 @@ ConvertTo-MvmcVirtualHardDisk -SourceLiteralPath "C:\vm\win2012.vmdk" -Destinati
 </ul>
 <pre><code>az vm create --resource-group vwwareVMs --location eastus --name vmwareVM1 --os-type windows --attach-os-disk vmwareDisk
 </code></pre>
-<p>Once  the  VM  creation  is  complete,  you  can  connect  to  it  via  Remote  Desktop  and  remove  VMware  Tools.  It  can  also  adjust  the  VM  size,  configure  automatic  shutdown,  and  other  settings  in  the  Azure  Portal.</p>
+<p><img src="https://github.com/albert-projects/azure_projects/blob/master/Migrating_VMDK/vmdk05.png" alt="VMDK5"><br>
+Once  the  VM  creation  is  complete,  you  can  connect  to  it  via  Remote  Desktop  and  remove  VMware  Tools.  It  can  also  adjust  the  VM  size,  configure  automatic  shutdown,  and  other  settings  in  the  Azure  Portal.</p>
 <p><strong>Complete  Script:</strong></p>
 <pre><code># Convert VMDK to VHD
 Import-Module 'C:\Program Files\Microsoft Virtual Machine Converter\MvmcCmdlet.psd1'
@@ -126,22 +131,19 @@ az vm create --resource-group YourResourceGroupName --location eastus --name New
 <p><strong>References:</strong></p>
 <ul>
 <li>
-<p>Prepare  a  Windows  VHD  or  VHDX  to  upload  to  Azure</p>
+<p><a href="https://learn.microsoft.com/en-us/azure/virtual-machines/windows/prepare-for-upload-vhd-image">Prepare  a  Windows  VHD  or  VHDX  to  upload  to  Azure</a></p>
 </li>
 <li>
-<p>Upload  a  VHD  to  Azure  or  copy  a  managed  disk  to  another  region  -  Azure  CLI</p>
+<p><a href="https://learn.microsoft.com/en-us/azure/virtual-machines/linux/disks-upload-vhd-to-managed-disk-cli">Upload  a  VHD  to  Azure  or  copy  a  managed  disk  to  another  region  -  Azure  CLI</a></p>
 </li>
 <li>
-<p>How  to  Convert  VMware  VMDK  Files  Into  Hyper-V  VHD  Files</p>
+<p><a href="https://www.sourceonetechnology.com/convert-vmware-vmdk-files-into-hyper-v-vhd/">How  to  Convert  VMware  VMDK  Files  Into  Hyper-V  VHD  Files</a></p>
 </li>
 <li>
-<p>Resize-VHD</p>
+<p><a href="https://learn.microsoft.com/en-us/powershell/module/hyper-v/resize-vhd?view=windowsserver2019-ps">Resize-VHD</a></p>
 </li>
 <li>
-<p>Microsoft  Virtual  Machine  Converter  3.0</p>
-</li>
-<li>
-<p>The  upload  size  in  bytes  #  -  512  bytes  for  the  VHD  footer  (#  in  this  case)  must  be  a  multiple  of  MiB.</p>
+<p><a href="https://azure.microsoft.com/en-us/pricing/details/managed-disks/">Managed Disks pricing</a></p>
 </li>
 </ul>
 
