@@ -108,7 +108,7 @@ ConvertTo-MvmcVirtualHardDisk -SourceLiteralPath "C:\vm\win2012.vmdk" -Destinati
 <p><img src="https://github.com/albert-projects/azure_projects/blob/master/Migrating_VMDK/vmdk05.png" alt="VMDK5"><br>
 Once  the  VM  creation  is  complete,  you  can  connect  to  it  via  Remote  Desktop  and  remove  VMware  Tools.  It  can  also  adjust  the  VM  size,  configure  automatic  shutdown,  and  other  settings  in  the  Azure  Portal.</p>
 <p><strong>Complete  Script:</strong></p>
-<pre><code>\# Convert VMDK to VHD
+<pre><code># Convert VMDK to VHD
 Import-Module 'C:\Program Files\Microsoft Virtual Machine Converter\MvmcCmdlet.psd1'
 ConvertTo-MvmcVirtualHardDisk -SourceLiteralPath "C:\vm\win2012.vmdk" -DestinationLiteralPath "C:\vm\win2012.vhd" -VhdType FixedHardDisk -VhdFormat Vhd
 Resize-VHD -Path c:\vm\win2012.vhd -SizeBytes 64GB
