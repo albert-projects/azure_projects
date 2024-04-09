@@ -114,6 +114,7 @@ ConvertTo-MvmcVirtualHardDisk -SourceLiteralPath "C:\vm\win2012.vmdk" -Destinati
 Resize-VHD -Path c:\vm\win2012.vhd -SizeBytes 64GB
 
 
+
 \# Azure CLI commands
 az login
 az account set --subscription "Your Azure Subscription ID"
