@@ -113,17 +113,17 @@ Import-Module 'C:\Program Files\Microsoft Virtual Machine Converter\MvmcCmdlet.p
 ConvertTo-MvmcVirtualHardDisk -SourceLiteralPath "C:\vm\win2012.vmdk" -DestinationLiteralPath "C:\vm\win2012.vhd" -VhdType FixedHardDisk -VhdFormat Vhd
 Resize-VHD -Path c:\vm\win2012.vhd -SizeBytes 64GB
 </code></pre>
-<pre><code>\# Azure CLI commands
+<pre><code># Azure CLI commands
 az login
 az account set --subscription "Your Azure Subscription ID"
 az group create --location eastus --name YourResourceGroupName
 az disk create -n YourAzureDiskName -g YourResourceGroupName -l eastus --for-upload --upload-size-bytes VHDFileSize --sku standardssd_lrs --hyper-v-generation V1
 az disk grant-access -n YourAzureDiskName -g YourResourceGroupName --access-level Write --duration-in-seconds 86400
 </code></pre>
-<pre><code>\# Upload VHD using AzCopy
+<pre><code># Upload VHD using AzCopy
 AzCopy.exe copy "C:\VM\win2012.vhd" "accessSAS_value" --blob-type PageBlob
 </code></pre>
-<pre><code>\# Revoke SAS and create VM 
+<pre><code># Revoke SAS and create VM 
 az disk revoke-access -n YourAzureDiskName -g YourResourceGroupName 
 az vm create --resource-group YourResourceGroupName --location eastus --name NewVMName --os-type windows --attach-os-disk YourAzureDiskName
 </code></pre>
