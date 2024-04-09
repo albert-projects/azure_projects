@@ -46,6 +46,6 @@
 <p><strong>Note:</strong>  We  extend  our  gratitude  to  Garry  Jiang  for  their  assistance  in  resolving  this  issue.  <sup>_</sup></p>
 <p><strong>Reference  Resource:</strong></p>
 <ul>
-<li><a href="http://ASP.NET">ASP.NET</a>  Core  with  IIS  -  HTTP  Verb  Not  Allowed</li>
+<li><a href="https://stackoverflow.com/questions/48188895/asp-net-core-with-iis-http-verb-not-allowed">ASP.NET  Core  with  IIS  -  HTTP  Verb  Not  Allowed</a></li>
 </ul>
 
