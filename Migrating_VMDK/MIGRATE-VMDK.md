@@ -112,10 +112,8 @@ Once  the  VM  creation  is  complete,  you  can  connect  to  it  via  Remote  
 Import-Module 'C:\Program Files\Microsoft Virtual Machine Converter\MvmcCmdlet.psd1'
 ConvertTo-MvmcVirtualHardDisk -SourceLiteralPath "C:\vm\win2012.vmdk" -DestinationLiteralPath "C:\vm\win2012.vhd" -VhdType FixedHardDisk -VhdFormat Vhd
 Resize-VHD -Path c:\vm\win2012.vhd -SizeBytes 64GB
-
-
-
-\# Azure CLI commands
+</code></pre>
+<pre><code>\# Azure CLI commands
 az login
 az account set --subscription "Your Azure Subscription ID"
 az group create --location eastus --name YourResourceGroupName
